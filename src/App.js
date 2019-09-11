@@ -1,10 +1,12 @@
 import React from 'react';
+
 import Split from './composition/Split';
-import './App.css';
 import Tooltip from './composition/Tooltip';
 import TheDate from './state/TheDate'
 import Counter from './state/Counter'
 import Tabs from './state/Tabs'
+
+import './App.css';
 
 //make 2 tooltips here and another inside the App directly
 const firstTooltip = (
