@@ -4,6 +4,7 @@ import './App.css';
 import Tooltip from './composition/Tooltip';
 import TheDate from './state/TheDate'
 import Counter from './state/Counter'
+import Tabs from './state/Tabs'
 
 //make 2 tooltips here and another inside the App directly
 const firstTooltip = (
@@ -17,6 +18,26 @@ const secondTooltip = (
     officilis
   </Tooltip>
 )
+
+const tabsProp = [
+  { name: 'First tab',
+    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam exercitationem quos consectetur expedita consequatur. Fugit, sapiente aspernatur corporis velit, dolor eum reprehenderit provident ipsam, maiores incidunt repellat! Facilis, neque doloremque.' },
+  { name: 'Second tab',
+    content: 'Laboriosam exercitationem quos consectetur expedita consequatur. Fugit, sapiente aspernatur corporis velit, dolor eum reprehenderit provident ipsam, maiores incidunt repellat! Facilis, neque doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit.' },
+  { name: 'Third tab',
+    content: 'Fugit, sapiente aspernatur corporis velit, dolor eum reprehenderit provident ipsam, maiores incidunt repellat! Facilis, neque doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam exercitationem quos consectetur expedita consequatur.' },
+];
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Tabs tabs={tabsProp} />
+      </div>
+    )
+  }
+}
+
 
 // function App() {
 //   return (
@@ -36,19 +57,20 @@ const secondTooltip = (
 //   );
 // }
 
-class App extends React.Component {
-  static defaultProp = {
-    step: 1
-  }
-  render() {
-    return (
-      <main className='App'>
-        <TheDate />
-        <Counter count={123} step={2} />
-      </main>
-    )
+// class App extends React.Component {
+//   static defaultProp = {
+//     step: 1
+//   }
+//   render() {
+//     return (
+//       <main className='App'>
+//         <TheDate />
+//         <Counter count={123} step={2} />
+//       </main>
+//     )
 
-  }
-}
+//   }
+// }
+
 
 export default App;
