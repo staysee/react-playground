@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Tabs from './Tabs'
 import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
 
 describe('Tabs Component', () => {
 
@@ -23,5 +25,10 @@ describe('Tabs Component', () => {
 	it('renders the first tab by default', () => {
 		const tree = renderer.create(<Tabs tabs={tabsProp} />)
 		expect(tree).toMatchSnapshot()
+	})
+
+	it('renders empty given no tabs', () => {
+		const wrapper = shallow(<Tabs />)
+		expect(toJson(wrapper)).toMatchSnapshot()
 	})
 })
