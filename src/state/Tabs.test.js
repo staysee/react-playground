@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Tabs from './Tabs'
-import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import Tabs from './Tabs'
+
+// import renderer from 'react-test-renderer'
 
 describe('Tabs Component', () => {
 
@@ -23,12 +24,27 @@ describe('Tabs Component', () => {
 	})
 
 	it('renders the first tab by default', () => {
-		const tree = renderer.create(<Tabs tabs={tabsProp} />)
-		expect(tree).toMatchSnapshot()
+		// const tree = renderer.create(<Tabs tabs={tabsProp} />)
+		// expect(tree).toMatchSnapshot()
+		const wrapper = shallow(<Tabs tabs={tabsProp} />)
+		expect(toJson(wrapper)).toMatchSnapshot()
 	})
 
 	it('renders empty given no tabs', () => {
 		const wrapper = shallow(<Tabs />)
+		expect(toJson(wrapper)).toMatchSnapshot()
+	})
+
+	//test for clicking one of the buttons
+	it('closes the first tab and opens any clicked tab', () => {
+		const wrapper = shallow(<Tabs tabs={tabsProp} />)
+		console.log('>>> WRAPPER <<<')
+		console.log(wrapper.debug())
+		console.log('>>> FIND(BUTTON) <<<')
+		console.log(wrapper.find('button').debug())
+		
+		console.log(wrapper.find('button').at(1).debug())
+		wrapper.find('button').at(1).simulate('click')
 		expect(toJson(wrapper)).toMatchSnapshot()
 	})
 })
