@@ -13,3 +13,7 @@
     background-color: white;
     color: firebrick;
 }
+
+.DateCounter, .Splits {
+    display: block;
+}
