@@ -8,7 +8,7 @@ import Accordian from './state-drills/Accordian'
 
 import './App.css';
 
-const sections = [
+const sectionsProp = [
   {
     title: 'Section 1',
     content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
@@ -54,7 +54,7 @@ class App extends React.Component {
       <div className="App">
         <div>
         <h1>Accordian</h1>
-          <Accordian sections={sections}/>
+          <Accordian sections={sectionsProp}/>
         </div>
 
         <div className="TabsAssignment">

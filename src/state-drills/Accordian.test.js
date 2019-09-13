@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { shallow } from 'enzyme-to-json'
+import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import Accordian from './Accordian'
 
 describe('Accordian Component', () => {
-    const sections = [
+    const sectionsProp = [
         {
           title: 'Section 1',
           content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
@@ -32,17 +32,19 @@ describe('Accordian Component', () => {
 	})
 
     it('renders no sections as active by default', () => {
-		// const tree = renderer.create(<Tabs tabs={tabsProp} />)
-		// expect(tree).toMatchSnapshot()
-		const wrapper = shallow(<Accordian sections={sections} />)
+		const wrapper = shallow(<Accordian sections={sectionsProp} />)
 		expect(toJson(wrapper)).toMatchSnapshot()
     })
     
     it('opens a clicked section', () => {
-
+        const wrapper = shallow(<Accordian sections={sectionsProp} />)
+        wrapper.find('button').at(1).simulate('click')
+        expect(toJson(wrapper)).toMatchSnapshot()
     })
 
-    it('opens only the last clicked sction when multiple sections have been clicked', () => {
-        
+    it('opens only the last clicked section when multiple sections have been clicked', () => {
+        const wrapper = shallow(<Accordian sections={sectionsProp} />)
+        wrapper.find('button').at(2).simulate('click')
+        expect(toJson(wrapper)).toMatchSnapshot()
     })
 })
