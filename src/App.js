@@ -5,6 +5,7 @@ import TheDate from './state/TheDate'
 import Counter from './state/Counter'
 import Tabs from './state/Tabs'
 import Accordian from './state-drills/Accordian'
+import DemonymApp from './demonymapp/demonymApp'
 
 import './App.css';
 
@@ -52,6 +53,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <div>
+          <h1>Demonym App</h1>
+          <DemonymApp />
+        </div>
+
         <div>
         <h1>Accordian</h1>
           <Accordian sections={sectionsProp}/>

@@ -1,4 +1,5 @@
 import React from 'react'
+import AccordianItem from './AccordianItem'
 
 class Accordian extends React.Component {
     static defaultProps = {
@@ -31,7 +32,12 @@ class Accordian extends React.Component {
         return (
             <ul className="Accordian">
                 {this.props.sections.map( (section, index) => (
-                    this.renderItem(index, section, activeSectionIndex)
+                    <AccordianItem 
+                        key={index}
+                        index={index}
+                        section={section}
+                        activeSectionIndex={activeSectionIndex}
+                    />
                 ))}
                 {}
             </ul>
