@@ -28,6 +28,11 @@ class DemonymApp extends Component {
             })
     }
 
+    setSelected(selected){
+        this.setState({
+            selected
+        })
+    }
     render() {
         const demon = this.state.selected 
             ? <Demonym 
@@ -38,7 +43,8 @@ class DemonymApp extends Component {
         return (
             <div className="demonym_app">
                 <CountrySelector 
-                    countries={this.state.countries}/>
+                    countries={this.state.countries}
+                    changeHandler={selected => this.setSelected(selected)} />
                 {demon}
             </div>
         )
