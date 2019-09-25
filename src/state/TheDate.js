@@ -10,7 +10,7 @@ class TheDate extends React.Component {
     componentDidMount() {
         console.log('componenentDidMount')
         this.interval = setInterval(() => {
-            console.log('setInterval')
+            // console.log('setInterval')
             this.setState({
                 datetime: new Date()
             })
@@ -22,7 +22,7 @@ class TheDate extends React.Component {
     }
 
     render() {
-        console.log('render')
+        // console.log('render')
         return(
             <div>{this.state.datetime.toLocaleString()}</div>
         )
