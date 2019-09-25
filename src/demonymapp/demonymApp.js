@@ -15,7 +15,16 @@ class DemonymApp extends Component {
 
     componentDidMount(){
         fetch('https://country.register.gov.uk/records.json?page-size=5000')
-            .then(response => response.json())
+            .then(response => {
+                //check if response if ok
+                console.log('About to check for errors')
+                if (!response.ok){
+                    console.log('An error did occur, let\'s throw an error.');
+                    throw new Error('Something went wrong'); //throw an error
+                }
+                return response;    //ok, so just continue
+            })
+            .then (response => response.json())
             .then(data => {
                 // console.log(data)
                 const countries = Object.keys(data)
@@ -24,6 +33,13 @@ class DemonymApp extends Component {
 
                 this.setState({
                     countries
+                })
+            })
+            .catch(err => {
+                //this catch handles the error condition
+                console.log('Handling the error here.', err);
+                this.setState({
+                    error: err.message
                 })
             })
     }
@@ -40,6 +56,10 @@ class DemonymApp extends Component {
                 country={this.state.selected.name} />
             : <div className="demonym_app__placeholder">Select a country above</div>;
 
+        const error = this.state.error
+            ? <div className="demonym_app__error">{this.state.error}</div>
+            : '';
+            
         return (
             <div className="demonym_app">
                 <CountrySelector 
