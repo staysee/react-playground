@@ -11,8 +11,10 @@ class GreatGrandChild extends Component {
       <section>
         <h2>{copy.title}</h2>
         <p>{copy.body}</p>
-        <button>
+        <button onClick={() => this.context.setLang('klingon')}>
             Klingon!{' '}
+            {/* yes I know it's a vulcan salut but star-wars */}
+            <span role='img' aria-label='klingon'>🖖</span>
         </button>
       </section>
     )
