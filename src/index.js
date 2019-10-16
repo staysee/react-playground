@@ -7,11 +7,10 @@ import App from './paltrows-power-toes/App'
 import HelloWorld from './state-drills/HelloWorld'
 import Bomb from './state-drills/Bomb'
 import RouletteGun from './state-drills/RouletteGun'
+import AppLang from '../src/lang-context/AppLang'
 
 import './index.css';
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App /> 
-    </BrowserRouter>,
+        <AppLang />,
     document.getElementById('root'));
