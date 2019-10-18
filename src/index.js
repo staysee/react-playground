@@ -8,9 +8,10 @@ import HelloWorld from './state-drills/HelloWorld'
 import Bomb from './state-drills/Bomb'
 import RouletteGun from './state-drills/RouletteGun'
 import AppLang from '../src/lang-context/AppLang'
+import RegistrationForm from './registrationForm/registrationForm'
 
 import './index.css';
 
 ReactDOM.render(
-        <AppLang />,
+        <RegistrationForm />,
     document.getElementById('root'));
