@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ValidationError from './ValidationError'
 import './registrationForm.css'
 
 class RegistrationForm extends React.Component {
@@ -7,30 +7,36 @@ class RegistrationForm extends React.Component {
         super(props);
         this.nameInput = React.createRef();
 
+        //booleans to the state show whether the use has typed anything into each field
+        //bc we want the validation messages to display only when the user tries to enter
+        //some information
         this.state = {
             name: {
-                value: ''
+                value: '',
+                touched: false
             },
             password: {
-                value: ''
+                value: '',
+                touched: false
             },
             repeatPassword: {
-                value: ''
+                value: '',
+                touched: false
             }
         }
     }
 
     //handlers to update state properties
     updateName(name){
-        this.setState({ name: { value: name }})
+        this.setState({ name: { value: name, touched: true }})
     }
 
     updatePassword(password){
-        this.setState({ password: { value: password }})
+        this.setState({ password: { value: password, touched: true }})
     }
 
     updateRepeatPassword(repeatPassword){
-        this.setState({ repeatPassword: { value: repeatPassword }})
+        this.setState({ repeatPassword: { value: repeatPassword, touched: true }})
     }
 
     //method to grab the values from the state
@@ -76,6 +82,10 @@ class RegistrationForm extends React.Component {
     }
 
     render () {
+        const nameError = this.validateName();
+        const passwordError = this.validatePassword();
+        const repeatPasswordError = this.validateRepeatPassword();
+
         return (
           <form className="registration" 
             onSubmit={ event =>{this.handleSubmit(event)}}>
@@ -85,26 +95,43 @@ class RegistrationForm extends React.Component {
               <label htmlFor="name">Name *</label>
               <input type="text" className="registration__control"
                 name="name" id="name" onChange={ e=> this.updateName(e.target.value)} />
+              {this.state.name.touched && (
+                  <ValidationError message={nameError} />  
+              )}
             </div>
             <div className="form-group">
                <label htmlFor="password">Password *</label>
                <input type="password" className="registration__control"
                 name="password" id="password" onChange={ e => this.updatePassword(e.target.value)} />
                <div className="registration__hint">6 to 72 characters, must include a number</div>
+               {this.state.password.touched && (
+                   <ValidationError message={passwordError} />
+               )}
             </div>
             <div className="form-group">
               <label htmlFor="repeatPassword">Repeat Password *</label>
               <input type="password" className="registration__control"
                 name="repeatPassword" id="repeatPassword" onChange={ e => this.updateRepeatPassword(e.target.value)} />
+                {this.state.repeatPassword.touched && (
+                    <ValidationError message={repeatPasswordError} />
+                )}
             </div>
      
             <div className="registration__button__group">
-             <button type="reset" className="registration__button">
-                 Cancel
-             </button>
-             <button type="submit" className="registration__button">
-                 Save
-             </button>
+                <button type="reset" className="registration__button">
+                    Cancel
+                </button>
+                <button 
+                    type="submit" 
+                    className="registration__button"
+                    disabled={
+                        this.validateName() ||
+                        this.validatePassword() ||
+                        this.validateRepeatPassword()
+                    }
+                >
+                    Save
+                </button>
             </div>
           </form>
         )
