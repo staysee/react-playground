@@ -45,6 +45,36 @@ class RegistrationForm extends React.Component {
        //potentially submit these values to the server here
     }
 
+    //validations
+    validateName(fieldValue){
+        const name = this.state.name.value.trim();
+        if (name.length === 0){
+            return `Name is required`;
+        } else if (name.length < 3){
+            return `Name must be at least 3 characters long`;
+        }
+    }
+
+    validatePassword(){
+        const password = this.state.password.value.trim();
+        if (password.length === 0){
+            return `Password is required`;
+        } else if (password.length < 6 || password.length > 72) {
+            return `Password must be between 6 and 72 characters long`;
+        } else if (!password.match(/[0-9]/)) {
+            return `Password must contain at least one number`;
+        }
+    }
+
+    validateRepeatPassword(){
+        const repeatPassword = this.state.repeatPassword.value.trim();
+        const password = this.state.password.value.trim();
+
+        if (repeatPassword !== password){
+            return `Passwords do not match`;
+        }
+    }
+
     render () {
         return (
           <form className="registration" 
